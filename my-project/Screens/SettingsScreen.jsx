@@ -1,11 +1,11 @@
 import { View, ScrollView, Text ,StyleSheet, Pressable, Image, Switch} from 'react-native'
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { EventRegister } from 'react-native-event-listeners';
+import themeContext from '../Theme/ThemeContext';
 
 export default function SettingsScreen() {
-  const [themeEnabled, setThemeEnabled] = useState(false);
-  const toggleTheme = () => {
-    setThemeEnabled(!themeEnabled);
-  };
+  const theme = useContext(themeContext)
+  const [darkMode, setDarkMode] = useState(false);
   const settingsOptions =[
     {id:'1', title:'Language' },
     {id:'2', title:'My Profile' },
@@ -14,7 +14,7 @@ export default function SettingsScreen() {
     {id:'5', title:'Privacy Policy' }
   ];
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
       <Text style={styles.header}>Settings</Text>
     {settingsOptions.map((option, id) =>(
       <View style={styles.optionsContainer}>
@@ -25,14 +25,14 @@ export default function SettingsScreen() {
       </View>
     ))}
     <View style={styles.themeContainer}>
-        <Text style={styles.themeText}>Theme</Text>
+    <Text style={[styles.themeText, { fontWeight: 'bold' }]}>Theme</Text>
         <Switch
-          value={themeEnabled}
-          onValueChange={toggleTheme}
-          trackColor={{ false: 'grey', true: 'white' }}
-          thumbColor={themeEnabled ? 'black' : 'white'}
-          ios_backgroundColor=""
-          style={styles.switch}
+          value={darkMode}
+          onValueChange={(value)=> {
+            setDarkMode(value);
+            EventRegister.emit('ChangeTheme', value)
+          }}
+          
         />
       </View>
     </ScrollView>

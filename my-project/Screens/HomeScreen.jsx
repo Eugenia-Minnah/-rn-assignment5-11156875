@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, StyleSheet, Image, FlatList, Pressable, button } from 'react-native';
 import HomeTransactions from '../Screens/HomeTransactions';
+import themeContext from '../Theme/ThemeContext';
+
 const HomeTransaction = [
     { id: '1', title: 'Apple Store', department: 'Entertainment', money: '-$5,99', image: require('../assets/apple.png') },
     { id: '2', title: 'Spotify', department: 'Music', money: '-$12,99', image: require('../assets/spotify.png')},
@@ -12,7 +14,10 @@ export default function HomeScreen() {
     const handlePress = (action) => {
         console.log(`${action} pressed`);
     };
+    const theme = useContext(themeContext);
 return (
+    <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
+            <Text style={[styles.text, { color:theme.color }]}>Home Screen</Text>
     <View style={styles.container}>
     <View style={styles.home}></View>
     <View>
@@ -72,6 +77,7 @@ return (
                 }
                 keyExtractor={item => item.id}
             />
+    </View>
     </View>
 );
 }
