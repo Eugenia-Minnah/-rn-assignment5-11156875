@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, Pressable, button } from 'react-native';
 import HomeTransactions from '../Screens/HomeTransactions';
 const HomeTransaction = [
     { id: '1', title: 'Apple Store', department: 'Entertainment', money: '-$5,99', image: require('../assets/apple.png') },
@@ -72,7 +72,7 @@ return (
                 }
                 keyExtractor={item => item.id}
             />
-        </View>
+    </View>
 );
 }
 
@@ -216,5 +216,13 @@ view: {
     fontSize: 18,
     color: '#0000FF',
     top: 5,
+},
+BottomTabs: {
+    flexDirection: 'row',
+    margin: 15
+},
+HomeIcon: {
+    left: 60,
+    height: 20,
 },
 });

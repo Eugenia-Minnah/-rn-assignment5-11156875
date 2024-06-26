@@ -37,9 +37,9 @@ TransactionImageBorder: {
 },
 TransactionCardIcon: {
 top: 15,
-left: 20,
-height: 25,
-width: 23,
+left: 18,
+height: 29,
+width: 27,
 },
 subSection: {
 marginRight: 80,
